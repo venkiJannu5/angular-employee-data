@@ -1,0 +1,64 @@
+<mat-toolbar color="primary">
+  <mat-toolbar-row>
+    <span>Employee Details</span>
+
+    <span class="example-spacer"></span>
+    
+     <button mat-button color="Primary-green" (click)="menu('list')">
+      Employee List
+    </button>
+     <button mat-button color="Primary-green" (click)="menu('sal')">
+      Employee Salary 
+    </button>
+     <button mat-button color="Primary-green" (click)="menu('ful')">
+      Employee Details
+    </button>
+  </mat-toolbar-row>
+</mat-toolbar>
+
+<mat-card>
+  <!--mat-form-field>
+  <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Search for a user">
+  </mat-form-field-->
+  <div class="mat-elevation-z8">
+    <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
+      <!-- Userid Column -->
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> User Id </th>
+        <td mat-cell *matCellDef="let element"> {{element._id}} </td>
+      </ng-container>
+      <!-- Username Column -->
+      <ng-container matColumnDef="salary">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Employee Salary </th>
+        <td mat-cell *matCellDef="let element"> {{element.salary}} </td>
+      </ng-container>
+       <ng-container matColumnDef="employee._id">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> EmployeeID </th>
+        <td mat-cell *matCellDef="let element"> {{element.employee._id}} </td>
+      </ng-container>
+      <ng-container matColumnDef="fullName">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Full Name </th>
+        <td mat-cell *matCellDef="let element"> {{element.employee.firstName}} {{element.employee.lastName}} </td>
+      </ng-container>
+     
+     
+      <!-- role Column -->
+      <!--ng-container matColumnDef="role.role">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header> Role</th>
+        <td mat-cell *matCellDef="let element">{{element.role.role}} </td>
+      </ng-container>
+      <!-- Action Column -->
+      <!--ng-container matColumnDef="action">
+        <th mat-header-cell *matHeaderCellDef> Action </th>
+        <td mat-cell *matCellDef="let element">
+          <button mat-flat-button mat-primary (click)="editUser(element.id)" [disabled]="true">Block</button>
+        </td>
+      </ng-container-->
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row;columns:displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons></mat-paginator>
+  </div>
+</mat-card>
+
